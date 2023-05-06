@@ -1,4 +1,6 @@
 ---
+import TailwindInject from "./_parts/tailwindInject.astro";
+import ThemeSwitch from "./_parts/themeSwitch.astro";
 const { title } = Astro.props;
 ---
 
@@ -7,12 +9,8 @@ const { title } = Astro.props;
     <title>{`${title ? title + " | " : ""}JKinsight Flash 🚀`}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <style is:global>
-      @tailwind base;
-      @tailwind components;
-      @tailwind utilities;
-    </style>
+    <TailwindInject />
+    <ThemeSwitch />
   </head>
   <body>
     <main>
