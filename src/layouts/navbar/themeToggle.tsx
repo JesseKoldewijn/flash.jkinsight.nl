@@ -1,3 +1,5 @@
+export const prerender = true;
+
 import { createSignal } from "solid-js";
 
 import { FaRegularMoon } from "solid-icons/fa";
@@ -7,9 +9,11 @@ const ThemeToggle = () => {
   type theme = "light" | "dark";
   const [currentTheme, setCurrentTheme] = createSignal<theme>("dark");
 
-  if (localStorage.getItem("theme")) {
-    const currentTheme = localStorage.getItem("theme") as theme;
-    setCurrentTheme(currentTheme);
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("theme")) {
+      const currentTheme = localStorage.getItem("theme") as theme;
+      setCurrentTheme(currentTheme);
+    }
   }
 
   const setThemeToggle = () => {
@@ -27,7 +31,7 @@ const ThemeToggle = () => {
     <>
       <div class="inline-block w-10">
         <button
-          class="btn btn-base-100 rounded-btn transition-all duration-300 ease-in-out h-10 w-10"
+          class="btn-base-100 rounded-btn btn h-10 w-10 transition-all duration-300 ease-in-out"
           onClick={setThemeToggle}
         >
           <span class="m-auto text-3xl">
