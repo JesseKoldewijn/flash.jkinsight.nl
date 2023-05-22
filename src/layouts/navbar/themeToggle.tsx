@@ -39,6 +39,7 @@ const ThemeToggle = () => {
           <span class="m-auto text-3xl">
             {currentTheme() == "dark" ? <WiDaySunny /> : <FaRegularMoon />}
           </span>
+          <span class="sr-only">Theme toggle</span>
         </button>
       </div>
     </>
