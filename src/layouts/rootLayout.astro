@@ -1,17 +1,26 @@
 ---
+import { SEO } from "astro-seo";
+
 import MetaTags from "./injects/meta.astro";
 import TailwindInject from "./injects/tailwind.astro";
 import ThemeSwitch from "./injects/theme.astro";
 import Navbar from "./navbar/navbar.astro";
+
 const { title } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <title>{`${title ? title + " | " : ""}JKinsight Flash 🚀`}</title>
-    <meta
-      name="description"
-      content={`${title ? title + " | " : ""}JKinsight Flash 🚀`}
+    <SEO
+      title={`${title ? title + " | " : ""}JKinsight Flash 🚀`}
+      description={`${title ? title + " | " : ""}JKinsight Flash 🚀`}
+      openGraph={{
+        basic: {
+          title: `${title ? title + " | " : ""}JKinsight Flash 🚀`,
+          type: "website",
+          image: "/meta/android-chrome-512x512.png",
+        },
+      }}
     />
     <MetaTags />
     <TailwindInject />
