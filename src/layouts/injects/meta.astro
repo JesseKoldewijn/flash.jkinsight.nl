@@ -1,4 +1,7 @@
 ---
+import { SEO } from "astro-seo";
+
+const { title } = Astro.props;
 ---
 
 <>
@@ -29,4 +32,17 @@
   <link rel="icon" type="image/ico" href="/meta/favicon.ico" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="sitemap" href="/sitemap-index.xml" />
+  <SEO
+    title={`${title ? title + " | " : ""}JKinsight Flash 🚀`}
+    description={`${
+      title ? title + " | " : ""
+    }JKinsight Flash 🚀 A blazingly fast web-app using Astro.js, Solid.js, TailwindCSS and TypeScript!`}
+    openGraph={{
+      basic: {
+        title: `${title ? title + " | " : ""}JKinsight Flash 🚀`,
+        type: "website",
+        image: "/meta/android-chrome-512x512.png",
+      },
+    }}
+  />
 </>

@@ -1,26 +1,62 @@
 ---
 import ThemeToggle from "./themeToggle";
+
+const routes = [
+  { title: "Home", href: "/" },
+  { title: "About", href: "/about-me" },
+  { title: "Portfolio", href: "/portfolio" },
+];
 ---
 
 <nav
-  class="w-full fixed top-0 inset-x-0 p-3 bg-stone-300 dark:bg-black border-b border-black dark:border-primary"
+  class="fixed inset-x-0 top-0 w-full border-b border-black bg-stone-300 p-3 dark:border-primary dark:bg-black"
 >
-  <div class="flex my-auto">
+  <div class="my-auto flex">
     <div class="navbar-start flex items-center">
-      <a href="/" class="text-xl">JKinsight Blaze</a>
+      <a href="/" class="text-xl">JKinsight Flash 🚀</a>
     </div>
     <div class="navbar-end flex items-center gap-2">
       <ThemeToggle client:only />
-      <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-base-100 rounded-btn">Dropdown</label
+      <div class="dropdown-end dropdown">
+        <label tabindex="0" class="btn-base-100 rounded-btn btn">Dropdown</label
         >
         <ul
           tabindex="0"
-          class="menu dropdown-content p-2 shadow bg-stone-300 dark:bg-black rounded-box border w-52 mt-6 border-black dark:border-primary"
+          id="dropdown-nav-menu"
+          class="dropdown-content menu rounded-box mt-6 flex w-52 flex-col gap-2 border border-black bg-stone-300 px-2 py-3 shadow dark:border-primary dark:bg-black"
         >
-          <li><a>Item 1</a></li>
-          <li><a>Item 2</a></li>
+          {
+            routes.map((route) => {
+              return (
+                <li
+                  id={route.href}
+                  class="border-accent rounded-lg border"
+                >
+                  <a href={route.href}>{route.title}</a>
+                </li>
+              );
+            })
+          }
         </ul>
+        <script>
+          const menuDropdown = document.getElementById("dropdown-nav-menu");
+          if (menuDropdown) {
+            const menuItems = Array.from(menuDropdown.children);
+
+            if (menuItems && menuItems.length > 0) {
+              menuItems.map((item) => {
+                const altPath = String(window.location.pathname + "/"); // catches route if trailing slash is used
+                if (item.id == window.location.pathname || item.id == altPath) {
+                  item.classList.add("border-red-500");
+                  item.classList.remove("border-accent");
+                } else {
+                  item.classList.add("border-accent");
+                  item.classList.remove("border-red-500");
+                }
+              });
+            }
+          }
+        </script>
       </div>
     </div>
   </div>
